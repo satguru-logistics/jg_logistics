@@ -2170,16 +2170,6 @@
         form.addEventListener("submit", function (e) {
           e.preventDefault();
 
-          if (
-            EMAILJS_SERVICE_ID === "service_l5dpuyn" ||
-            EMAILJS_TEMPLATE_ID === "template_9tkb8d4"
-          ) {
-            status.style.color = "#ffd479";
-            status.textContent =
-              "Form is ready, but EmailJS isn't configured yet - add your Service ID, Template ID and Public Key in the script at the bottom of this file.";
-            return;
-          }
-
           btn.disabled = true;
           var originalText = btn.textContent;
           btn.textContent = "Sending…";
