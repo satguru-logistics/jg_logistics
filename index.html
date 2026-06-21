@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JG Logistics — Reefer Truck &amp; Cold Chain Transportation, Pan India</title>
+<meta name="description" content="JG Logistics provides temperature-controlled reefer truck transportation and cold chain logistics across India — pharmaceuticals, dairy, frozen foods and fresh produce, +8°C to -25°C.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700;800&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#13222d;
+    --slate:#54677a;
+    --slate-light:#8398a8;
+    --deep:#0a3a5c;
+    --deep-2:#0f4d78;
+    --ice:#4fa8d8;
+    --ice-light:#bfe3f2;
+    --mist:#eef4f8;
+    --bg:#f3f7fa;
+    --paper:#ffffff;
+    --line:#dbe6ed;
+    --warn:#d98b3a;
+    --frost:#dff3fb;
+    --radius:2px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Archivo Expanded',sans-serif;
+    letter-spacing:-0.01em;
+    color:var(--deep);
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.78rem;
+    color:var(--ice);
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:600;letter-spacing:0.04em;text-transform:uppercase;
+    font-size:0.95rem;
+    padding:13px 26px;border-radius:var(--radius);
+    text-decoration:none;cursor:pointer;border:1.5px solid transparent;
+    transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--ice);color:#04202f;}
+  .btn-primary:hover{background:#62b6e0;}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,0.45);}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+  .btn-dark{background:var(--deep);color:#fff;}
+  .btn-dark:hover{background:var(--deep-2);}
+
+  /* ---------- Temperature strip (signature element) ---------- */
+  .temp-strip{
+    position:sticky; top:0; z-index:90;
+    height:5px; width:100%;
+    background:linear-gradient(90deg,#5fc6e8 0%, #2f8fc4 28%, #0a3a5c 55%, #06243a 80%, #021521 100%);
+  }
+  .temp-strip::after{
+    content:'';
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky; top:5px; z-index:89;
+    background:rgba(10,58,92,0.96);
+    backdrop-filter:blur(6px);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:68px;
+  }
+  .logo{
+    font-family:'Archivo Expanded',sans-serif;
+    font-weight:800; color:#fff; font-size:1.18rem;
+    letter-spacing:0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo small{
+    display:block; font-family:'Barlow Condensed',sans-serif;
+    font-weight:500; font-size:0.62rem; letter-spacing:0.18em;
+    color:var(--ice-light); text-transform:uppercase; margin-top:1px;
+  }
+  .logo-mark{
+    width:34px;height:34px;border:1.5px solid var(--ice);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--ice); font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;
+    flex-shrink:0;
+  }
+  nav.links{display:flex;gap:28px;align-items:center;}
+  nav.links a{
+    color:#cfe4ef;text-decoration:none;font-size:0.92rem;font-weight:500;
+    font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.06em;
+    transition:color .15s ease;
+  }
+  nav.links a:hover{color:#fff;}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse at 80% -10%, rgba(79,168,216,0.35), transparent 55%),
+      linear-gradient(180deg,#08293f 0%, #0a3a5c 55%, #0c4670 100%);
+    color:#fff;
+    overflow:hidden;
+    padding:88px 0 96px;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+    background-size:46px 46px;
+    mask-image:linear-gradient(180deg, black, transparent 80%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative; display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.18em;
+    font-size:0.78rem;color:var(--ice-light);
+    border:1px solid rgba(191,227,242,0.35); padding:7px 14px; margin-bottom:22px;
+  }
+  .hero-eyebrow .dot{width:6px;height:6px;background:#5fe089;border-radius:50%;box-shadow:0 0 0 3px rgba(95,224,137,0.25);}
+  .hero h1{
+    font-size:clamp(2.4rem,4.6vw,3.6rem);
+    color:#fff; line-height:1.04; font-weight:800;
+    margin-bottom:22px;
+  }
+  .hero h1 em{font-style:normal;color:var(--ice-light);}
+  .hero p.lede{
+    font-size:1.12rem; color:#cfe4ef; max-width:46ch; margin-bottom:32px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:46px;}
+  .hero-stats{display:flex;gap:36px;flex-wrap:wrap;}
+  .hero-stats div{border-left:2px solid var(--ice); padding-left:14px;}
+  .hero-stats .num{font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:1.7rem;color:#fff;}
+  .hero-stats .lbl{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.08em;font-size:0.74rem;color:#9cc1d6;}
+
+  /* Hero gauge card */
+  .gauge-card{
+    position:relative; background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.16);
+    padding:30px 28px; backdrop-filter:blur(8px);
+  }
+  .gauge-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;}
+  .gauge-head .eyebrow{color:var(--ice-light);}
+  .gauge-head .live{
+    display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;
+    font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:#9cc1d6;
+  }
+  .gauge-head .live .dot{width:6px;height:6px;background:#5fe089;border-radius:50%;animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  .gauge-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px dashed rgba(255,255,255,0.16);}
+  .gauge-row:last-of-type{border-bottom:none;}
+  .gauge-row .g-label{font-family:'Barlow Condensed',sans-serif;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.04em;color:#cfe4ef;}
+  .gauge-row .g-val{font-family:'Archivo Expanded',sans-serif;font-weight:700;font-size:1.25rem;color:#fff;}
+  .gauge-row .g-val span{color:var(--ice-light);font-size:0.85rem;font-weight:500;font-family:'Inter',sans-serif;}
+  .gauge-foot{margin-top:18px;font-size:0.85rem;color:#9cc1d6;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:680px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.7rem,2.8vw,2.3rem);margin-top:10px;}
+  .section-head p{color:var(--slate);font-size:1.04rem;margin-top:14px;}
+  .band-grey{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+
+  /* Why choose us */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .why-card{background:var(--paper);padding:32px 28px;}
+  .why-card .ico{
+    width:42px;height:42px;border:1.5px solid var(--ice);color:var(--deep);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  }
+  .why-card h3{font-size:1.08rem;margin-bottom:8px;}
+  .why-card p{color:var(--slate);font-size:0.95rem;margin:0;}
+
+  /* Services */
+  .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .service-card{
+    background:var(--paper);border:1px solid var(--line);padding:26px 22px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .service-card:hover{border-color:var(--ice);transform:translateY(-3px);}
+  .service-card .temp-tag{
+    display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:600;
+    font-size:0.74rem;letter-spacing:0.05em;color:var(--deep);background:var(--frost);
+    padding:4px 9px;margin-bottom:14px;
+  }
+  .service-card h3{font-size:1rem;margin-bottom:8px;line-height:1.3;}
+  .service-card p{color:var(--slate);font-size:0.9rem;margin:0;}
+
+  /* Fleet */
+  .fleet-wrap{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:start;}
+  .fleet-list{display:flex;flex-direction:column;}
+  .fleet-item{
+    display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:18px;
+    padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .fleet-item:first-child{border-top:1px solid var(--line);}
+  .fleet-size{font-family:'Archivo Expanded',sans-serif;font-weight:800;color:var(--ice);font-size:1.5rem;}
+  .fleet-name{font-weight:600;font-size:1.02rem;}
+  .fleet-name span{display:block;font-weight:400;color:var(--slate-light);font-size:0.85rem;margin-top:2px;}
+  .fleet-feat-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .fleet-feat-list li{display:flex;align-items:flex-start;gap:12px;font-size:0.97rem;color:var(--ink);}
+  .fleet-feat-list li::before{
+    content:'';width:9px;height:9px;background:var(--ice);margin-top:6px;flex-shrink:0;
+  }
+
+  /* Industries */
+  .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .ind-pill{
+    background:var(--deep);color:#fff;padding:20px 18px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
+    letter-spacing:0.03em;font-size:0.98rem;
+    border-left:3px solid var(--ice);
+  }
+
+  /* Coverage */
+  .coverage-wrap{display:grid;grid-template-columns:1fr 1fr;gap:54px;}
+  .route-line{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:13px 0;border-bottom:1px dashed var(--line);font-size:0.98rem;
+  }
+  .route-line span:first-child{font-weight:600;}
+  .route-line span:last-child{color:var(--ice);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.04em;font-size:0.85rem;text-transform:uppercase;}
+  .map-card{
+    background:var(--deep);color:#fff;padding:34px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;min-height:340px;
+  }
+  .map-card::before{
+    content:'';position:absolute;inset:0;
+    background-image:radial-gradient(circle, rgba(255,255,255,0.12) 1.5px, transparent 1.5px);
+    background-size:18px 18px; opacity:0.5;
+  }
+  .map-card h3{color:#fff;position:relative;font-size:1.2rem;margin-bottom:10px;}
+  .map-card p{position:relative;color:#bcdcec;font-size:0.95rem;}
+  .map-pin{position:relative;font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:2.4rem;color:var(--ice);}
+
+  /* Temperature capabilities */
+  .temp-cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .temp-cap-card{background:var(--paper);padding:30px 26px;}
+  .temp-cap-card .range{
+    font-family:'Archivo Expanded',sans-serif;font-weight:800;font-size:1.9rem;color:var(--deep);
+    margin-bottom:6px;
+  }
+  .temp-cap-card .range small{font-size:1rem;color:var(--ice);font-weight:700;}
+  .temp-cap-card h3{font-size:1.02rem;margin-bottom:12px;color:var(--ink);font-family:'Inter',sans-serif;font-weight:700;}
+  .temp-cap-card ul{margin:0;padding-left:18px;color:var(--slate);font-size:0.92rem;}
+  .temp-cap-card ul li{margin-bottom:5px;}
+
+  /* Process */
+  .process-strip{display:flex;flex-wrap:wrap;}
+  .process-step{
+    flex:1 1 0; min-width:150px; padding:26px 20px; border-right:1px solid var(--line);
+    position:relative;
+  }
+  .process-step:last-child{border-right:none;}
+  .process-step .pnum{font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--ice);font-size:0.85rem;letter-spacing:0.08em;}
+  .process-step h3{font-size:0.96rem;margin-top:10px;line-height:1.3;font-family:'Inter',sans-serif;font-weight:700;}
+
+  /* Certifications */
+  .cert-row{display:flex;flex-wrap:wrap;gap:14px;}
+  .cert-chip{
+    border:1px solid var(--line);background:var(--paper);padding:12px 18px;
+    font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;
+    font-size:0.85rem;letter-spacing:0.04em;color:var(--deep);
+  }
+
+  /* Testimonials */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .testi-card{background:var(--paper);border:1px solid var(--line);padding:28px 26px;}
+  .testi-card .quote{font-size:1rem;color:var(--ink);margin-bottom:18px;}
+  .testi-card .who{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.02em;color:var(--deep);font-size:0.92rem;text-transform:uppercase;}
+  .testi-card .who span{display:block;font-family:'Inter',sans-serif;font-weight:400;color:var(--slate-light);text-transform:none;font-size:0.85rem;margin-top:2px;}
+
+  /* FAQ */
+  .faq-list{max-width:780px;}
+  details{border-bottom:1px solid var(--line);padding:18px 0;}
+  details summary{
+    cursor:pointer;font-weight:600;font-size:1.02rem;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;color:var(--deep);
+  }
+  details summary::-webkit-details-marker{display:none;}
+  details summary::after{content:'+';font-size:1.4rem;color:var(--ice);font-weight:400;}
+  details[open] summary::after{content:'–';}
+  details p{color:var(--slate);margin:14px 0 0;font-size:0.96rem;max-width:70ch;}
+
+  /* Quote form / contact */
+  .quote-section{
+    background:linear-gradient(180deg,#0a3a5c,#0c4670);color:#fff;
+  }
+  .quote-wrap{display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;align-items:start;}
+  .quote-wrap .section-head h2,.quote-wrap .eyebrow{color:#fff;}
+  .quote-wrap .section-head p{color:#bcdcec;}
+  .quote-info{display:flex;flex-direction:column;gap:22px;margin-top:30px;}
+  .quote-info .qi{border-left:2px solid var(--ice);padding-left:16px;}
+  .quote-info .qi b{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.06em;font-size:0.78rem;color:var(--ice-light);margin-bottom:4px;}
+  form.quote-form{background:#fff;padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  form.quote-form .full{grid-column:1/-1;}
+  form.quote-form label{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;font-size:0.76rem;color:var(--slate);margin-bottom:6px;}
+  form.quote-form input,form.quote-form select,form.quote-form textarea{
+    width:100%;border:1px solid var(--line);background:var(--mist);padding:11px 12px;
+    font-family:'Inter',sans-serif;font-size:0.95rem;color:var(--ink);border-radius:var(--radius);
+  }
+  form.quote-form input:focus,form.quote-form select:focus,form.quote-form textarea:focus{
+    outline:2px solid var(--ice);outline-offset:1px;background:#fff;
+  }
+  form.quote-form textarea{resize:vertical;min-height:80px;}
+  form.quote-form .btn{justify-self:start;margin-top:6px;}
+
+  /* Footer */
+  footer{background:#06243a;color:#9cc1d6;padding:60px 0 28px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:46px;}
+  .foot-grid h4{color:#fff;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.06em;font-size:0.85rem;margin-bottom:16px;}
+  .foot-grid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:0.92rem;}
+  .foot-grid ul a{text-decoration:none;color:#9cc1d6;}
+  .foot-grid ul a:hover{color:#fff;}
+  .foot-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .foot-logo .logo-mark{border-color:var(--ice);}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);padding-top:22px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:0.82rem;color:#6f93a8;
+  }
+  .quick-contact{position:fixed;right:22px;bottom:22px;display:flex;flex-direction:column;gap:10px;z-index:80;}
+  .quick-contact a{
+    width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:var(--deep);color:#fff;font-size:1.3rem;text-decoration:none;box-shadow:0 6px 18px rgba(10,58,92,0.35);
+    border:2px solid var(--ice);
+  }
+  .quick-contact a.wa{background:#25D366;border-color:#25D366;color:#06243a;}
+
+  /* Responsive */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    .services-grid{grid-template-columns:1fr 1fr;}
+    .temp-cap-grid{grid-template-columns:1fr;}
+    .ind-grid{grid-template-columns:1fr 1fr;}
+    .process-strip{flex-direction:column;}
+    .process-step{border-right:none;border-bottom:1px solid var(--line);}
+    .testi-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    form.quote-form{grid-template-columns:1fr;}
+  }
+  @media (max-width:720px){
+    nav.links{display:none;}
+    .menu-toggle{display:block;}
+    .why-grid,.services-grid,.ind-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:22px;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="temp-strip" aria-hidden="true"></div>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">JG</span>
+      <span>JG LOGISTICS<small>Cold Chain &amp; Reefer Transport</small></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#fleet">Fleet</a>
+      <a href="#industries">Industries</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#quote" class="btn btn-primary">Request a Quote</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top:64px;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="hero-eyebrow"><span class="dot"></span> PAN INDIA &middot; 24×7 OPERATIONS</div>
+        <h1>Cold chain transportation, held to <em>+8°C&nbsp;to&nbsp;−25°C</em> precision.</h1>
+        <p class="lede">JG Logistics moves temperature-sensitive cargo — pharmaceuticals, dairy, frozen foods and fresh produce — across India in GPS-tracked, continuously monitored reefer trucks. Nothing in transit, nothing out of range.</p>
+        <div class="hero-ctas">
+          <a href="#quote" class="btn btn-primary">Request a Quote</a>
+          <a href="#fleet" class="btn btn-ghost">View Our Fleet</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="num">17–22 FT</div><div class="lbl">Reefer Fleet Range</div></div>
+          <div><div class="num">9+</div><div class="lbl">Major Corridors</div></div>
+          <div><div class="num">24×7</div><div class="lbl">Live Monitoring</div></div>
+        </div>
+      </div>
+      <div class="gauge-card">
+        <div class="gauge-head">
+          <div>
+            <div class="eyebrow">In-Transit Readout</div>
+          </div>
+          <div class="live"><span class="dot"></span> Live Tracking</div>
+        </div>
+        <div class="gauge-row"><span class="g-label">Chilled Cargo</span><span class="g-val">+4°C <span>/ +2 to +8°C</span></span></div>
+        <div class="gauge-row"><span class="g-label">Frozen Cargo</span><span class="g-val">−21°C <span>/ −18 to −25°C</span></span></div>
+        <div class="gauge-row"><span class="g-label">Route</span><span class="g-val" style="font-size:1.05rem;">Delhi → Mumbai</span></div>
+        <div class="gauge-row"><span class="g-label">Vehicle</span><span class="g-val" style="font-size:1.05rem;">20 FT Reefer</span></div>
+        <div class="gauge-foot">Every shipment is GPS-tracked with continuous temperature recording from pickup to proof of delivery.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why" class="band-grey">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Why JG Logistics</div>
+        <h2>Built for cargo that can't wait, and can't warm up.</h2>
+        <p>Temperature-controlled freight has one tolerance: zero. Here's how we hold the line, end to end.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card"><div class="ico">01</div><h3>Temperature-Controlled Expertise</h3><p>Specialised reefer transportation engineered for sensitive and perishable products.</p></div>
+        <div class="why-card"><div class="ico">02</div><h3>Pan India Coverage</h3><p>Reliable refrigerated transport across major cities and industrial hubs nationwide.</p></div>
+        <div class="why-card"><div class="ico">03</div><h3>Real-Time Monitoring</h3><p>Continuous temperature tracking through transit for verifiable cargo safety.</p></div>
+        <div class="why-card"><div class="ico">04</div><h3>On-Time Deliveries</h3><p>Disciplined route planning and operations management for dependable transit times.</p></div>
+        <div class="why-card"><div class="ico">05</div><h3>Dedicated Fleet</h3><p>Modern refrigerated vehicles maintained to industry standards, ready when you are.</p></div>
+        <div class="why-card"><div class="ico">06</div><h3>24/7 Support</h3><p>Round-the-clock coordination and assistance for urgent or scheduled moves.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;">
+      <div>
+        <div class="eyebrow">About Us</div>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.3rem);margin-top:10px;">A cold-chain logistics partner built around one job: holding temperature.</h2>
+        <p style="color:var(--slate);margin-top:18px;">JG Logistics is a specialised refrigerated transportation and cold-chain logistics company providing reliable temperature-controlled solutions across India. Since 2024, we've focused on the safe, timely movement of temperature-sensitive goods through a modern reefer fleet and a dedicated logistics network.</p>
+        <p style="color:var(--slate);margin-top:14px;">Whether it's pharmaceuticals, dairy products, frozen foods, fresh produce or healthcare supplies, JG Logistics ensures uninterrupted cold-chain delivery from pickup to destination — with the quality, compliance and operational discipline the cargo demands.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);">
+        <div style="background:var(--paper);padding:26px;">
+          <div class="eyebrow">Our Mission</div>
+          <p style="margin-top:10px;color:var(--ink);font-size:1.02rem;">To provide reliable, efficient and technology-driven refrigerated transportation that preserves product quality and strengthens supply chain performance for our clients.</p>
+        </div>
+        <div style="background:var(--paper);padding:26px;">
+          <div class="eyebrow">Our Vision</div>
+          <p style="margin-top:10px;color:var(--ink);font-size:1.02rem;">To become one of India's most trusted cold-chain logistics partners by delivering excellence in temperature-controlled transportation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="band-grey">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Refrigerated Transport Services</div>
+        <h2>Eight ways to keep cargo in range.</h2>
+        <p>From GDP-compliant pharma moves to long-haul interstate cold chain, each service is built around the temperature band the cargo needs.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card"><span class="temp-tag">+2°C — +8°C</span><h3>Pharmaceutical Transportation</h3><p>GDP-compliant transport for medicines, vaccines and healthcare products.</p></div>
+        <div class="service-card"><span class="temp-tag">Multi-Temp</span><h3>Cold Chain Logistics</h3><p>End-to-end cold chain management protecting product integrity through transit.</p></div>
+        <div class="service-card"><span class="temp-tag">−18°C — −25°C</span><h3>Frozen Food Transportation</h3><p>Precise temperature control for frozen and chilled food products.</p></div>
+        <div class="service-card"><span class="temp-tag">Dedicated</span><h3>Dedicated Reefer Fleet</h3><p>Exclusive vehicle deployment for businesses with recurring requirements.</p></div>
+        <div class="service-card"><span class="temp-tag">City-to-City</span><h3>Intercity Reefer Transportation</h3><p>Fast, secure refrigerated transport between major cities.</p></div>
+        <div class="service-card"><span class="temp-tag">Long-Haul</span><h3>Interstate Refrigerated Transport</h3><p>Cold-chain logistics across states with uninterrupted temperature maintenance.</p></div>
+        <div class="service-card"><span class="temp-tag">On-Demand</span><h3>On-Demand Reefer Services</h3><p>Quick vehicle deployment for urgent temperature-controlled requirements.</p></div>
+        <div class="service-card"><span class="temp-tag">Standard</span><h3>Refrigerated Truck Transportation</h3><p>Temperature-controlled transportation across India for perishable, sensitive cargo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLEET -->
+  <section id="fleet">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Our Reefer Fleet</div>
+        <h2>Right-sized vehicles, fully instrumented.</h2>
+      </div>
+      <div class="fleet-wrap">
+        <div class="fleet-list">
+          <div class="fleet-item"><div class="fleet-size">17′</div><div class="fleet-name">17 FT Reefer Trucks<span>Compact city &amp; regional moves</span></div></div>
+          <div class="fleet-item"><div class="fleet-size">20′</div><div class="fleet-name">20 FT Reefer Trucks<span>Standard intercity payloads</span></div></div>
+          <div class="fleet-item"><div class="fleet-size">22′</div><div class="fleet-name">22 FT Reefer Trucks<span>High-volume, long-haul freight</span></div></div>
+          <div class="fleet-item"><div class="fleet-size">MT</div><div class="fleet-name">Multi-Temperature Reefer Vehicles<span>Mixed product loads in one trip</span></div></div>
+          <div class="fleet-item"><div class="fleet-size">Rx</div><div class="fleet-name">Dedicated Pharmaceutical Reefer Vehicles<span>GDP-compliant, validated transport</span></div></div>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom:16px;">Fleet Features</div>
+          <ul class="fleet-feat-list">
+            <li>GPS-enabled vehicles, tracked from pickup to delivery</li>
+            <li>Real-time temperature monitoring throughout transit</li>
+            <li>Digital temperature recording for proof of compliance</li>
+            <li>Insulated, fully sealed cargo compartments</li>
+            <li>Sanitised vehicles meeting hygienic transport standards</li>
+            <li>Preventive maintenance programme for fleet reliability</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMPERATURE CAPABILITIES -->
+  <section class="band-grey">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Temperature Capabilities</div>
+        <h2>Three bands. One standard of precision.</h2>
+      </div>
+      <div class="temp-cap-grid">
+        <div class="temp-cap-card">
+          <div class="range">+2°C <small>to</small> +8°C</div>
+          <h3>Chilled Transportation</h3>
+          <ul><li>Pharmaceuticals</li><li>Dairy products</li><li>Fresh produce</li></ul>
+        </div>
+        <div class="temp-cap-card">
+          <div class="range">−18°C <small>to</small> −25°C</div>
+          <h3>Frozen Transportation</h3>
+          <ul><li>Frozen foods</li><li>Ice cream</li><li>Seafood &amp; meat products</li></ul>
+        </div>
+        <div class="temp-cap-card">
+          <div class="range">Mixed <small>Zones</small></div>
+          <h3>Multi-Temperature Transportation</h3>
+          <ul><li>Mixed product loads</li><li>Retail distribution</li><li>Food service logistics</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section id="industries">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Industries We Serve</div>
+        <h2>Cold chain for the industries that can't risk a break in it.</h2>
+      </div>
+      <div class="ind-grid">
+        <div class="ind-pill">Pharmaceuticals</div>
+        <div class="ind-pill">Healthcare &amp; Life Sciences</div>
+        <div class="ind-pill">Dairy</div>
+        <div class="ind-pill">FMCG</div>
+        <div class="ind-pill">Frozen Foods</div>
+        <div class="ind-pill">Agriculture &amp; Fresh Produce</div>
+        <div class="ind-pill">Retail Distribution</div>
+        <div class="ind-pill">Food Processing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COVERAGE -->
+  <section id="coverage" class="band-grey">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Coverage Network</div>
+        <h2>Major routes out of Delhi, and growing.</h2>
+      </div>
+      <div class="coverage-wrap">
+        <div>
+          <div class="route-line"><span>Delhi → Mumbai</span><span>Intercity</span></div>
+          <div class="route-line"><span>Delhi → Ahmedabad</span><span>Intercity</span></div>
+          <div class="route-line"><span>Delhi → Pune</span><span>Intercity</span></div>
+          <div class="route-line"><span>Delhi → Hyderabad</span><span>Intercity</span></div>
+          <div class="route-line"><span>Delhi → Bengaluru</span><span>Intercity</span></div>
+          <div class="route-line"><span>Delhi → Chennai</span><span>Intercity</span></div>
+          <div class="route-line"><span>Delhi → Kolkata</span><span>Intercity</span></div>
+          <div class="route-line"><span>Delhi → Chandigarh</span><span>Regional</span></div>
+          <div class="route-line"><span>Delhi → Jaipur</span><span>Regional</span></div>
+          <div class="route-line"><span>Delhi → Lucknow</span><span>Regional</span></div>
+        </div>
+        <div class="map-card">
+          <div>
+            <div class="eyebrow" style="color:var(--ice-light);">Coverage Area</div>
+            <h3>Pan India Transportation Network</h3>
+            <p>Operations available across all major states and metropolitan cities in India, coordinated from our New Delhi corporate office.</p>
+          </div>
+          <div class="map-pin">📍 Delhi NCR</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLD CHAIN PROCESS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Cold Chain Process</div>
+        <h2>How a shipment moves through JG Logistics.</h2>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0 28px 0;max-width:1180px;">
+      <div class="process-strip" style="border:1px solid var(--line);background:var(--paper);">
+        <div class="process-step"><div class="pnum">Step 1</div><h3>Booking &amp; Requirement Assessment</h3></div>
+        <div class="process-step"><div class="pnum">Step 2</div><h3>Vehicle Allocation</h3></div>
+        <div class="process-step"><div class="pnum">Step 3</div><h3>Pre-Cooling Verification</h3></div>
+        <div class="process-step"><div class="pnum">Step 4</div><h3>Loading &amp; Documentation</h3></div>
+        <div class="process-step"><div class="pnum">Step 5</div><h3>Live Monitoring During Transit</h3></div>
+        <div class="process-step"><div class="pnum">Step 6</div><h3>Delivery &amp; Proof of Delivery</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="band-grey">
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:28px;">
+        <div class="eyebrow">Certifications &amp; Compliance</div>
+        <h2>Standards we operate by, not just claim.</h2>
+      </div>
+      <div class="cert-row">
+        <div class="cert-chip">GDP Compliance</div>
+        <div class="cert-chip">ISO 9001:2015</div>
+        <div class="cert-chip">Transportation Safety Standards</div>
+        <div class="cert-chip">Cold Chain Compliance</div>
+        <div class="cert-chip">Hygiene &amp; Sanitation Standards</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="clients">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Clients &amp; Testimonials</div>
+        <h2>Trusted across pharma, dairy, FMCG and food.</h2>
+        <p>We work with pharmaceutical companies, food manufacturers, dairy brands, FMCG businesses and healthcare organisations across India.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card"><p class="quote">"Temperature logs arrive with every delivery, no exceptions. That consistency is exactly what our compliance team needs."</p><div class="who">Supply Chain Manager<span>Pharmaceutical Distributor</span></div></div>
+        <div class="testi-card"><p class="quote">"Our dairy shipments move on tight delivery windows. JG Logistics has held those windows reliably since day one."</p><div class="who">Operations Head<span>Dairy &amp; FMCG Brand</span></div></div>
+        <div class="testi-card"><p class="quote">"Booking a dedicated reefer vehicle on short notice has never been a problem with their team."</p><div class="who">Logistics Coordinator<span>Frozen Foods Company</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <details open><summary>What temperature range can your reefer trucks maintain?<span></span></summary><p>Our fleet maintains chilled transport from +2°C to +8°C and frozen transport from −18°C to −25°C, with multi-temperature vehicles available for mixed loads.</p></details>
+        <details><summary>Do you provide pharmaceutical transportation?<span></span></summary><p>Yes. We offer GDP-compliant pharmaceutical transportation for medicines, vaccines and healthcare products.</p></details>
+        <details><summary>Is GPS tracking available?<span></span></summary><p>Every vehicle in our fleet is GPS-enabled with real-time tracking and continuous temperature monitoring.</p></details>
+        <details><summary>Do you offer Pan India transportation?<span></span></summary><p>Yes, we operate across major states and metropolitan cities throughout India from our New Delhi base.</p></details>
+        <details><summary>Can I get a dedicated reefer vehicle?<span></span></summary><p>Yes, dedicated fleet solutions are available for businesses with recurring or contract transportation needs.</p></details>
+        <details><summary>How quickly can a vehicle be arranged?<span></span></summary><p>Our on-demand reefer services are built for fast deployment — contact our team for current availability in your route.</p></details>
+        <details><summary>Do you provide temperature reports?<span></span></summary><p>Yes, digital temperature recording and reports are provided for every shipment, supporting compliance documentation.</p></details>
+        <details><summary>Are your services available 24/7?<span></span></summary><p>Yes, our operations and support team are available around the clock.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE / CONTACT -->
+  <section id="quote" class="quote-section">
+    <div class="wrap quote-wrap">
+      <div>
+        <div class="eyebrow">Request a Quote</div>
+        <h2 style="font-size:clamp(1.7rem,2.8vw,2.3rem);margin-top:10px;">Tell us what's moving, and where.</h2>
+        <p>Share your pickup, delivery and temperature requirement — our team will respond with vehicle availability and pricing.</p>
+        <div class="quote-info">
+          <div class="qi"><b>Corporate Office</b>JG Logistics, New Delhi, India</div>
+          <div class="qi"><b>Phone</b>+91-8826912626 &nbsp;/&nbsp; +91-9971130303</div>
+          <div class="qi"><b>Email</b>info@jglogistics.in</div>
+          <div class="qi"><b>Business Hours</b>24×7 Operations Support</div>
+        </div>
+      </div>
+      <form class="quote-form" id="contact">
+        <div><label for="company">Company Name</label><input name="company" id="company" type="text" placeholder="Your company" required></div>
+        <div><label for="contactPerson">Contact Person</label><input name="contact_person" id="contactPerson" type="text" placeholder="Full name" required></div>
+        <div><label for="mobile">Mobile Number</label><input name="mobile" id="mobile" type="tel" placeholder="+91" required></div>
+        <div><label for="emailAddr">Email Address</label><input name="email" id="emailAddr" type="email" placeholder="you@company.com" required></div>
+        <div><label for="pickup">Pickup Location</label><input name="pickup" id="pickup" type="text" placeholder="City"></div>
+        <div><label for="delivery">Delivery Location</label><input name="delivery" id="delivery" type="text" placeholder="City"></div>
+        <div><label for="product">Product Type</label><input name="product" id="product" type="text" placeholder="e.g. Dairy, Pharma, Frozen Food"></div>
+        <div>
+          <label for="temp">Temperature Requirement</label>
+          <select name="temperature" id="temp">
+            <option>+2°C to +8°C (Chilled)</option>
+            <option>−18°C to −25°C (Frozen)</option>
+            <option>Multi-Temperature</option>
+          </select>
+        </div>
+        <div>
+          <label for="vehicle">Vehicle Requirement</label>
+          <select name="vehicle" id="vehicle">
+            <option>17 FT Reefer Truck</option>
+            <option>20 FT Reefer Truck</option>
+            <option>22 FT Reefer Truck</option>
+            <option>Not sure — please advise</option>
+          </select>
+        </div>
+        <div><label for="shipDate">Shipment Date</label><input name="shipment_date" id="shipDate" type="date"></div>
+        <div class="full"><label for="notes">Additional Notes</label><textarea name="notes" id="notes" placeholder="Anything else we should know"></textarea></div>
+        <div class="full">
+          <button type="submit" class="btn btn-dark" id="quoteSubmitBtn">Submit Request</button>
+          <div id="quoteFormStatus" style="margin-top:12px;font-size:0.92rem;font-family:'Inter',sans-serif;"></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span class="logo-mark">JG</span><span style="color:#fff;font-family:'Archivo Expanded',sans-serif;font-weight:800;">JG LOGISTICS</span></div>
+        <p style="font-size:0.92rem;max-width:32ch;">Delivering freshness, quality &amp; reliability through advanced cold chain transportation solutions.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#about">About Us</a></li><><a href="#fleet">Our Fleet</a></li><li><a href="#faq">FAQ</a></li></ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul><li><a href="#services">Pharma Transport</a></li><li><a href="#services">Cold Chain Logistics</a></li><li><a href="#services">Frozen Food Transport</a></li><li><a href="#coverage">Coverage Network</a></li></ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>New Delhi, India</li>
+          <li>+91-8826912626</li>
+          <li>info@jglogistics.in</li>
+          <li>24×7 Operations Support</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 JG Logistics. All rights reserved.</span>
+      <span>GST: 07HBDPS4196C1ZE</span>
+    </div>
+  </div>
+</footer>
+
+<div class="quick-contact">
+  <a href="tel:+918826912626" title="Call Now">📞</a>
+  <a class="wa" href="https://wa.me/918826912626" title="WhatsApp Us">💬</a>
+</div>
+
+<script>
+  document.querySelectorAll('.links a').forEach(a=>{
+    a.addEventListener('click',()=>{document.getElementById('navLinks').classList.remove('open');});
+  });
+</script>
+
+<!-- ===================== EMAILJS INTEGRATION ===================== -->
+<!--
+  This form uses EmailJS (emailjs-com v3) to send the quote request
+  straight to your inbox — no backend required.
+
+  SETUP (5 minutes):
+  1. Create a free account at https://www.emailjs.com
+  2. Add an Email Service (e.g. Gmail) under "Email Services" — copy its SERVICE ID.
+  3. Create an Email Template under "Email Templates" — copy its TEMPLATE ID.
+     Use these variables in the template body, matching the form field names below:
+     {{company}} {{contact_person}} {{mobile}} {{email}} {{pickup}} {{delivery}}
+     {{product}} {{temperature}} {{vehicle}} {{shipment_date}} {{notes}}
+     Set the template's "To Email" to info@jglogistics.in
+  4. Under Account > General, copy your PUBLIC KEY.
+  5. Replace the three placeholders below: YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, YOUR_TEMPLATE_ID.
+-->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    // Initialise EmailJS with your Public Key (Account > General on emailjs.com)
+    emailjs.init("YOUR_PUBLIC_KEY");
+
+    var EMAILJS_SERVICE_ID  = "YOUR_SERVICE_ID";
+    var EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+    var form   = document.getElementById('contact');
+    var btn    = document.getElementById('quoteSubmitBtn');
+    var status = document.getElementById('quoteFormStatus');
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      if (EMAILJS_SERVICE_ID === "YOUR_SERVICE_ID" || EMAILJS_TEMPLATE_ID === "YOUR_TEMPLATE_ID") {
+        status.style.color = "#ffd479";
+        status.textContent = "Form is ready, but EmailJS isn't configured yet — add your Service ID, Template ID and Public Key in the script at the bottom of this file.";
+        return;
+      }
+
+      btn.disabled = true;
+      var originalText = btn.textContent;
+      btn.textContent = "Sending…";
+      status.style.color = "#bcdcec";
+      status.textContent = "";
+
+      emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+        .then(function(){
+          status.style.color = "#5fe089";
+          status.textContent = "Thank you — your quote request has been sent. Our team will contact you shortly.";
+          form.reset();
+        })
+        .catch(function(err){
+          status.style.color = "#ff8a8a";
+          status.textContent = "Something went wrong sending your request. Please call +91-8826912626 or email info@jglogistics.in directly.";
+          console.error("EmailJS error:", err);
+        })
+        .finally(function(){
+          btn.disabled = false;
+          btn.textContent = originalText;
+        });
+    });
+  })();
+</script>
+</body>
+</html>
